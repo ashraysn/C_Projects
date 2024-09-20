@@ -1,0 +1,56 @@
+Script started on Wed 01 Mar 2023 05:20:38 AM PST
+]0;ashraysn@bondi:hw4[ashraysn@bondi hw4]$ make
+gcc -std=c11 -Wall -c PhotoLab.c -o PhotoLab.o
+gcc -std=c11 -Wall -c FileIO.c -o FileIO.o
+gcc -std=c11 -Wall -c Image.c -o Image.o
+gcc -std=c11 -Wall -c Test.c -o Test.o 
+gcc -std=c11 -Wall -c DIPs.c -o DIPs.o
+gcc -std=c11 -Wall -c Advanced.c -o Advanced.o
+ar rc libfilter.a Advanced.o DIPs.o
+ranlib libfilter.a
+gcc -std=c11 -Wall -g PhotoLab.o FileIO.o Image.o Test.o -L. -lfilter -o PhotoLab -lm
+gcc -std=c11 -Wall -c -DDEBUG  PhotoLab.c -o PhotoLab_DEBUG.o
+[01m[KPhotoLab.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[KPhotoLab.c:25:6:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Krc[m[K’ set but not used [-Wunused-but-set-variable]
+  int rc;
+[01;32m[K      ^[m[K
+gcc -std=c11 -Wall -c -DDEBUG  Test.c -o Test_DEBUG.o 
+gcc -std=c11 -Wall -DDEBUG  PhotoLab_DEBUG.o Test_DEBUG.o FileIO.o Image.o -L. -lfilter -o PhotoLabTest -lm
+]0;ashraysn@bondi:hw4[ashraysn@bondi hw4]$ ./PhotoLab
+
+----------------------------
+ 1: Load a PPM image
+ 2: Save an image in PPM and JPEG format
+ 3: Change a color image to Black & White
+ 4: Make a negative of an image
+ 5: Color filter an image
+ 6: Sketch the edge of an image
+ 7: Shuffle an image
+ 8: Flip an image horizontally
+ 9: Mirror an image horizontally
+10: Add border to an image
+11: Normalize an image
+12: Posterize an image
+13: Rotate and zoom an image
+14: Motion Blur
+15: Crop an image
+16: Resize an image
+17: Adjust the Brightness and Contrast of an image
+18: Add Watermark to an image
+19: Test all functions
+20: Exit
+
+----------------------------
+Please make your choice: Please make your choice: 19
+PhotoLab: Image.c:24: GetPixelG: Assertion `y < ImageHeight(image)' failed.
+Abort
+]0;ashraysn@bondi:hw4[ashraysn@bondi hw4]$ valgrind --leak-check=full PhotoLabTest
+valgrind: PhotoLabTest: command not found
+]0;ashraysn@bondi:hw4[ashraysn@bondi hw4]$ --[K[Kvalgrind --leak-check=full PhotoLabTest[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kmake clean
+rm -f *.o *.jpg PhotoLab PhotoLabTest negative.ppm bw.ppm colorfilter.ppm edge.ppm shuffle.ppm hlip.ppm hmirror.ppm border.ppm normalize.ppm posterize.ppm rotate.ppm motionblur.ppm crop.ppm brightnessandcontrast.ppm libfilter.a libFileIO.a
+rm -f PhotoLab
+rm -f PhotoLabTest
+]0;ashraysn@bondi:hw4[ashraysn@bondi hw4]$ exit
+exit
+
+Script done on Wed 01 Mar 2023 05:23:24 AM PST

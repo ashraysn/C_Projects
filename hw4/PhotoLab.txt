@@ -1,0 +1,2 @@
+In this assignment, we took assignment 3 and replace all the usages of R, G, and B two dimensional arrays and replace them with pointer manipulation
+We created Image.c which included new functions based on the Image struct. This assignment took a very long time.
